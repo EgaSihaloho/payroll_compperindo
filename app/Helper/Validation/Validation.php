@@ -79,9 +79,7 @@ class Validation
     private function findExistingAcccount()
     {
         $this->user = DB::table($this->tableName)->select('*')
-            ->where([
-                ['user_name', $this->data['user_name']]
-            ])
+            ->where('user_name', $this->data['user_name'])
             ->first();
         if (sizeof($this->user) > 0) {
             $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
