@@ -5,6 +5,7 @@ namespace App\Helper\Validation;
 use DB;
 use App\Helper\String\StringManipulator;
 use App\Helper\String\BuildResponse;
+use Illuminate\Support\Facades\Hash;
 
 
 class Validation
@@ -16,15 +17,41 @@ class Validation
         $new->data = $data;
         $new->method = $method;
         if ($new->method == 'register') $new->validateOnRegister();
+        if ($new->method == 'register') $new->validateOnLogin();
         if ($new->method == 'insertlog') $new->validateOnInsertLog();
 
 
         return $new;
     }
 
-    private function validateOnInsertLog()
+    private function validateOnLogin()
     {
         $this->getTable()->getColumn()->validateData();
+        if ($this->value == true) $this->findExistingAcccount();
+        if ($this->value == true)  $this->matchPassword();
+        return $this;
+    }
+
+    private function matchPassword()
+    {
+        if (!Hash::make($this->data['password']) == $this->user->passwords) {
+            $this->response =
+                BuildResponse::response('00', 'Success', 'Success Validate Data');
+            $this->value = true;
+            return $this;
+        }
+        $this->response =
+            BuildResponse::response('99', 'Error', 'Password Not Match');
+        $this->value = true;
+        return $this;
+    }
+
+
+
+    private function validateOnInsertLog()
+    {
+        $this->column = ['username', 'passwords'];
+        $this->validateData();
         return $this;
     }
 
@@ -51,13 +78,12 @@ class Validation
 
     private function findExistingAcccount()
     {
-        $data = DB::table($this->tableName)->select('id')
+        $this->user = DB::table($this->tableName)->select('*')
             ->where([
-                ['user_name', $this->data['user_name']],
-                ['email', $this->data['email']]
+                ['user_name', $this->data['user_name']]
             ])
-            ->count();
-        if ($data > 0) {
+            ->first();
+        if (sizeof($this->user) > 0) {
             $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
             $this->value = false;
             return $this;
