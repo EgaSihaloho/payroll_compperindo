@@ -36,7 +36,7 @@ class Validation
 
     private function matchPassword()
     {
-        if (!Hash::make($this->data['passwords']) == $this->user->passwords) {
+        if (Hash::check($this->data['passwords'], $this->user->passwords)) {
             $this->response =
                 BuildResponse::response('00', 'Success', 'Success Validate Data');
             $this->value = true;
@@ -83,15 +83,27 @@ class Validation
             ->where('user_name', $this->data['user_name'])
             ->first();
         if ($this->user == null) $this->user = [];
-        if (sizeof($this->user) > 0) {
-            $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
+        if ($this->method == 'register') {
+            if (sizeof($this->user) > 0) {
+                $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
+                $this->value = false;
+                return $this;
+            }
+            $this->response =
+                BuildResponse::response('00', 'Success', 'Success Validate Data');
+            $this->value = true;
+            return $this;
+        } else {
+            if (sizeof($this->user) > 0) {
+                $this->response =
+                    BuildResponse::response('00', 'Success', 'Success Validate Data');
+                $this->value = true;
+                return $this;
+            }
+            $this->response = BuildResponse::response('99', 'User Not Found', 'Cannot find user');
             $this->value = false;
             return $this;
         }
-        $this->response =
-            BuildResponse::response('00', 'Success', 'Success Validate Data');
-        $this->value = true;
-        return $this;
     }
 
     private function validateData()
