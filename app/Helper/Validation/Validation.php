@@ -26,6 +26,7 @@ class Validation
 
     private function validateOnLogin()
     {
+        $this->getTable();
         $this->column = ['user_name', 'passwords'];
         $this->validateData();
         if ($this->value == true) $this->findExistingAcccount();
