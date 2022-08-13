@@ -26,7 +26,8 @@ class Validation
 
     private function validateOnLogin()
     {
-        $this->getTable()->getColumn()->validateData();
+        $this->column = ['user_name', 'passwords'];
+        $this->validateData();
         if ($this->value == true) $this->findExistingAcccount();
         if ($this->value == true)  $this->matchPassword();
         return $this;
@@ -50,8 +51,7 @@ class Validation
 
     private function validateOnInsertLog()
     {
-        $this->column = ['username', 'passwords'];
-        $this->validateData();
+        $this->getTable()->getColumn()->validateData();
         return $this;
     }
 
@@ -81,6 +81,7 @@ class Validation
         $this->user = DB::table($this->tableName)->select('*')
             ->where('user_name', $this->data['user_name'])
             ->first();
+        if ($this->user == null) $this->user = [];
         if (sizeof($this->user) > 0) {
             $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
             $this->value = false;
