@@ -17,7 +17,7 @@ class Validation
         $new->data = $data;
         $new->method = $method;
         if ($new->method == 'register') $new->validateOnRegister();
-        if ($new->method == 'register') $new->validateOnLogin();
+        if ($new->method == 'login') $new->validateOnLogin();
         if ($new->method == 'insertlog') $new->validateOnInsertLog();
 
 
@@ -34,7 +34,7 @@ class Validation
 
     private function matchPassword()
     {
-        if (!Hash::make($this->data['password']) == $this->user->passwords) {
+        if (!Hash::make($this->data['passwords']) == $this->user->passwords) {
             $this->response =
                 BuildResponse::response('00', 'Success', 'Success Validate Data');
             $this->value = true;
