@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Helper\Validation\Validation;
 use App\Helper\Log\Log;
 use App\Helper\String\BuildResponse;
+use App\Service\UserAccess;
 
 
 class RegistrationController extends Controller
@@ -27,10 +28,9 @@ class RegistrationController extends Controller
         if ($validate->value == false) return $validate->response;
         /*Add Role To Data*/
         $data['role'] = '2';
-        /*encrypt Password*/
-        $data['passwords'] = Hash::make($data['passwords']);
+
         /*InsertData*/
-        $this->insertUserAccess($data);
+        UserAccess::insertUserAccess($data);
 
         return BuildResponse::response('00', 'Success', 'Success On Registration');
     }
