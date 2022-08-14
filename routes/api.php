@@ -31,61 +31,23 @@ Route::get('/showAllDepartemen', function () {
     return json_encode(Departemen::showDepartemen());
 });
 
-Route::post('/findBarang', function () {
-    return json_encode(Barang::findBarang(
-        [
-            "nama_barang" => "LHLDDA009",
-            "id_satuan" => 1,
-            "harga" => 1200,
-            "created_by" => 99
-        ]
 
-    )->value);
+Route::post('/findBarang', function (Request $request) {
+    return json_encode(Barang::findBarang($request->all())->value);
 });
 
-Route::post('/findDepartemen', function () {
-    return json_encode(Departemen::findDepartemen(
-        [
-            "departement_name" => "Connector",
-            "created_by" => 99
-        ]
-
-    )->value);
+Route::post('/findDepartemen', function (Request $request) {
+    return json_encode(Departemen::findDepartemen($request->all())->value);
 });
 
-Route::post('/insertBarang', function () {
-    return json_encode(Barang::insertBarang(
-        [
-            "nama_barang" => "testing5",
-            "id_satuan" => 1,
-            "harga" => 1500,
-            "created_by" => 99
-        ]
-    )->value);
+Route::post('/insertBarang', function (Request $request) {
+    return json_encode(Barang::insertBarang($request->all())->value);
 });
 
-Route::post('/updateBarang', function () {
-    return json_encode(Barang::updateBarang(
-        [
-            "where" => [
-                "id" => "21"
-            ],
-            "data" => [
-                "nama_barang" => "testing6",
-                "id_satuan" => 1,
-                "harga" => 1500,
-                "created_by" => 99,
-                "updated_by" => 99
-            ]
-        ]
-
-    )->value);
+Route::post('/updateBarang', function (Request $request) {
+    return json_encode(Barang::updateBarang($request->all())->value);
 });
 
-Route::post('/deleteBarang', function () {
-    return json_encode(Barang::deleteBarang(
-        [
-            "id" => "21"
-        ]
-    )->value);
+Route::post('/deleteBarang', function (Request $request) {
+    return json_encode(Barang::deleteBarang($request->all())->value);
 });
