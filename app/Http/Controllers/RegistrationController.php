@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Helper\Validation\Validation;
 use App\Helper\Log\Log;
 use App\Helper\String\BuildResponse;

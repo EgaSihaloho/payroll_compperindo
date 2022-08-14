@@ -2,7 +2,7 @@
 
 namespace App\Helper\Validation;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Helper\String\StringManipulator;
 use App\Helper\String\BuildResponse;
 use Illuminate\Support\Facades\Hash;
@@ -82,9 +82,10 @@ class Validation
         $this->user = DB::table($this->tableName)->select('*')
             ->where('user_name', $this->data['user_name'])
             ->first();
-        if ($this->user == null) $this->user = [];
+
+
         if ($this->method == 'register') {
-            if (sizeof($this->user) > 0) {
+            if (!$this->user == null) {
                 $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
                 $this->value = false;
                 return $this;
@@ -94,7 +95,7 @@ class Validation
             $this->value = true;
             return $this;
         } else {
-            if (sizeof($this->user) > 0) {
+            if (!$this->user == null) {
                 $this->response =
                     BuildResponse::response('00', 'Success', 'Success Validate Data');
                 $this->value = true;
