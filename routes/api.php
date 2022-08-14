@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Service\Barang;
 use App\Service\Departemen;
 use App\Service\Gaji;
+use App\Service\Karyawan;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,10 @@ Route::get('/showAllGaji', function () {
     return json_encode(Gaji::showGaji());
 });
 
+Route::get('/showAllKaryawan', function () {
+    return json_encode(Karyawan::showKaryawan());
+});
+
 
 Route::post('/findBarang', function (Request $request) {
     return json_encode(Barang::findBarang($request->all())->value);
@@ -47,6 +52,10 @@ Route::post('/findDepartemen', function (Request $request) {
 
 Route::post('/findGaji', function (Request $request) {
     return json_encode(Gaji::findGaji($request->all())->value);
+});
+
+Route::post('/findKaryawan', function (Request $request) {
+    return json_encode(Karyawan::findKaryawan($request->all())->value);
 });
 
 Route::post('/insertBarang', function (Request $request) {
@@ -61,6 +70,10 @@ Route::post('/insertGaji', function (Request $request) {
     return json_encode(Gaji::insertGaji($request->all())->value);
 });
 
+Route::post('/insertKaryawan', function (Request $request) {
+    return json_encode(Karyawan::insertKaryawan($request->all())->value);
+});
+
 Route::post('/updateBarang', function (Request $request) {
     return json_encode(Barang::updateBarang($request->all())->value);
 });
@@ -73,6 +86,10 @@ Route::post('/updateGaji', function (Request $request) {
     return json_encode(Gaji::updateGaji($request->all())->value);
 });
 
+Route::post('/updateKaryawan', function (Request $request) {
+    return json_encode(Karyawan::updateKaryawan($request->all())->value);
+});
+
 Route::post('/deleteBarang', function (Request $request) {
     return json_encode(Barang::deleteBarang($request->all())->value);
 });
@@ -83,4 +100,8 @@ Route::post('/deleteDepartemen', function (Request $request) {
 
 Route::post('/deleteGaji', function (Request $request) {
     return json_encode(Gaji::deleteGaji($request->all())->value);
+});
+
+Route::post('/deleteKaryawan', function (Request $request) {
+    return json_encode(Karyawan::deleteKaryawan($request->all())->value);
 });
