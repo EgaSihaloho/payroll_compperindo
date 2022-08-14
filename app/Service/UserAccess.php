@@ -2,8 +2,9 @@
 
 namespace App\Service;
 
-use Illuminate\Support\Facades\DB;
 use App\Service\StandardCrud;
+
+use Illuminate\Support\Facades\Hash;
 
 class UserAccess
 {
@@ -28,6 +29,7 @@ class UserAccess
     public static function insertUserAccess($data)
     {
         $new = new UserAccess();
+        if (isset($data['passwords'])) $data['passwords'] = Hash::make($data['passwords']);
         return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
     }
 
@@ -35,6 +37,7 @@ class UserAccess
     public static function updateUserAccess($data)
     {
         $new = new UserAccess();
+        if (isset($data['passwords'])) $data['passwords'] = Hash::make($data['passwords']);
         return StandardCrud::update([
             'table' => $new->tableName,
             'where' => $data['where'],

@@ -6,6 +6,8 @@ use App\Service\Barang;
 use App\Service\Departemen;
 use App\Service\Gaji;
 use App\Service\Karyawan;
+use App\Service\Role;
+use App\Service\UserAccess;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,11 @@ use App\Service\Karyawan;
 Route::post('/register', 'RegistrationController@register');
 Route::post('/login', 'LoginController@login');
 
+
+Route::get('/showAllUserAccess', function () {
+    return json_encode(UserAccess::showUserAccess());
+});
+
 Route::get('/showAllBarang', function () {
     return json_encode(Barang::showBarang());
 });
@@ -37,10 +44,22 @@ Route::get('/showAllGaji', function () {
     return json_encode(Gaji::showGaji());
 });
 
+
 Route::get('/showAllKaryawan', function () {
     return json_encode(Karyawan::showKaryawan());
 });
 
+Route::get('/showAllRole', function () {
+    return json_encode(Role::showRole());
+});
+
+Route::post('/findUserAccess', function (Request $request) {
+    return json_encode(UserAccess::findUserAccess($request->all())->value);
+});
+
+Route::post('/findRole', function (Request $request) {
+    return json_encode(Role::findRole($request->all())->value);
+});
 
 Route::post('/findBarang', function (Request $request) {
     return json_encode(Barang::findBarang($request->all())->value);
@@ -56,6 +75,14 @@ Route::post('/findGaji', function (Request $request) {
 
 Route::post('/findKaryawan', function (Request $request) {
     return json_encode(Karyawan::findKaryawan($request->all())->value);
+});
+
+Route::post('/insertUserAccess', function (Request $request) {
+    return json_encode(UserAccess::insertUserAccess($request->all())->value);
+});
+
+Route::post('/insertRole', function (Request $request) {
+    return json_encode(Role::insertRole($request->all())->value);
 });
 
 Route::post('/insertBarang', function (Request $request) {
@@ -74,6 +101,14 @@ Route::post('/insertKaryawan', function (Request $request) {
     return json_encode(Karyawan::insertKaryawan($request->all())->value);
 });
 
+Route::post('/updateUserAccess', function (Request $request) {
+    return json_encode(UserAccess::updateUserAccess($request->all())->value);
+});
+
+Route::post('/updateRole', function (Request $request) {
+    return json_encode(Role::updateRole($request->all())->value);
+});
+
 Route::post('/updateBarang', function (Request $request) {
     return json_encode(Barang::updateBarang($request->all())->value);
 });
@@ -88,6 +123,14 @@ Route::post('/updateGaji', function (Request $request) {
 
 Route::post('/updateKaryawan', function (Request $request) {
     return json_encode(Karyawan::updateKaryawan($request->all())->value);
+});
+
+Route::post('/deleteUserAccess', function (Request $request) {
+    return json_encode(UserAccess::deleteUserAccess($request->all())->value);
+});
+
+Route::post('/deleteRole', function (Request $request) {
+    return json_encode(Role::deleteRole($request->all())->value);
 });
 
 Route::post('/deleteBarang', function (Request $request) {
