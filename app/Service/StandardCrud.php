@@ -7,37 +7,39 @@ use Illuminate\Support\Facades\DB;
 class StandardCrud
 {
 
+    private static $tableName;
+    private static $data;
+    private static $where;
 
     public static function show($data)
     {
-        $new = new StandardCrud();
-        $new->tableName = $data['table'];
-        $new->execShow();
-        return $new;
+        self::$tableName = $data['table'];
+        $result = self::execShow();
+        return $result;
     }
-    private function execShow()
+    private static function execShow()
     {
-        $this->value = DB::table($this->tableName)->get();
-        return $this;
+        $value = DB::table(self::$tableName)->get();
+        return $value;
     }
 
     public static function find($data)
     {
-        $new = new StandardCrud();
-        $new->tableName = $data['table'];
-        if (isset($data['where'])) $new->where = $data['where'];
-        $new->execFind($data['where']);
-        return $new;
+
+        self::$tableName = $data['table'];
+        if (isset($data['where'])) self::$where = $data['where'];
+        $value = self::execFind($data['where']);
+        return $value;
     }
 
-    private function execFind($data)
+    private static function execFind($data)
     {
         if (sizeof($data) > 1) {
             $arrayWhere = [];
             foreach ($data as $key => $val) {
                 array_push($arrayWhere, [$key, $val]);
             }
-            $this->value = DB::table($this->tableName)->where($arrayWhere)->get();
+            $value = DB::table(self::$tableName)->where($arrayWhere)->get();
         } else {
             $key = '';
             $val = '';
@@ -45,44 +47,44 @@ class StandardCrud
                 $key = $dKey;
                 $val = $dVal;
             }
-            $this->value = DB::table($this->tableName)->where($key, $val)->get();
+            $value = DB::table(self::$tableName)->where($key, $val)->get();
         }
-        return $this;
+        return $value;
     }
 
     public static function insert($data)
     {
-        $new = new StandardCrud();
-        $new->tableName = $data['table'];
-        if (isset($data['data'])) $new->data = $data['data'];
-        $new->execInsert($data['data']);
-        return $new;
+
+        self::$tableName = $data['table'];
+        if (isset($data['data'])) self::$data = $data['data'];
+        $value = self::execInsert($data['data']);
+        return $value;
     }
 
-    private function execInsert($data)
+    private static function execInsert($data)
     {
-        $this->value = DB::table($this->tableName)->insertGetId($data);
-        return $this;
+        $value = DB::table(self::$tableName)->insertGetId($data);
+        return $value;
     }
 
     public static function update($data)
     {
-        $new = new StandardCrud();
-        $new->tableName = $data['table'];
-        if (isset($data['where'])) $new->where = $data['where'];
-        if (isset($data['data'])) $new->where = $data['data'];
-        $new->execUpdate($data['where'], $data['data']);
-        return $new;
+
+        self::$tableName = $data['table'];
+        if (isset($data['where'])) self::$where = $data['where'];
+        if (isset($data['data'])) self::$data = $data['data'];
+        $value = self::execUpdate($data['where'], $data['data']);
+        return $value;
     }
 
-    private function execUpdate($where, $data)
+    private static function execUpdate($where, $data)
     {
         if (sizeof($where) > 1) {
             $arrayWhere = [];
             foreach ($where as $key => $val) {
                 array_push($arrayWhere, [$key, $val]);
             }
-            $this->value = DB::table($this->tableName)->where($arrayWhere)->update($data);
+            $value = DB::table(self::$tableName)->where($arrayWhere)->update($data);
         } else {
             $key = '';
             $val = '';
@@ -90,21 +92,21 @@ class StandardCrud
                 $key = $dKey;
                 $val = $dVal;
             }
-            $this->value = DB::table($this->tableName)->where($key, $val)->update($data);
+            $value = DB::table(self::$tableName)->where($key, $val)->update($data);
         }
-        return $this;
+        return $value;
     }
 
     public static function delete($data)
     {
-        $new = new StandardCrud();
-        $new->tableName = $data['table'];
-        if (isset($data['where'])) $new->where = $data['where'];
-        $new->execDelete($data['where']);
-        return $new;
+
+        self::$tableName = $data['table'];
+        if (isset($data['where'])) self::$where = $data['where'];
+        $value = self::execDelete($data['where']);
+        return $value;
     }
 
-    private function execDelete($data)
+    private static function execDelete($data)
     {
 
         if (sizeof($data) > 1) {
@@ -112,7 +114,7 @@ class StandardCrud
             foreach ($data as $key => $val) {
                 array_push($arrayWhere, [$key, $val]);
             }
-            $this->value = DB::table($this->tableName)->where($arrayWhere)->delete();
+            $value = DB::table(self::$tableName)->where($arrayWhere)->delete();
         } else {
             $key = '';
             $val = '';
@@ -120,8 +122,8 @@ class StandardCrud
                 $key = $dKey;
                 $val = $dVal;
             }
-            $this->value = DB::table($this->tableName)->where($key, $val)->delete();
+            $value = DB::table(self::$tableName)->where($key, $val)->delete();
         }
-        return $this;
+        return $value;
     }
 }

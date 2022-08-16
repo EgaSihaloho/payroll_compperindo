@@ -7,36 +7,33 @@ use App\Service\StandardCrud;
 
 class Role
 {
-    public function __construct()
-    {
-        $this->tableName = 'role';
-    }
+    private static $tableName = 'rel_gaji';
 
     public static function showRole()
     {
-        $new = new Role();
-        return StandardCrud::show(['table' => $new->tableName]);
+
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findRole($data)
     {
-        $new = new Role();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertRole($data)
     {
-        $new = new Role();
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateRole($data)
     {
-        $new = new Role();
+
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -44,9 +41,9 @@ class Role
 
     public static function deleteRole($data)
     {
-        $new = new Role();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }

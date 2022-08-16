@@ -7,36 +7,33 @@ use App\Service\StandardCrud;
 
 class Karyawan
 {
-    public function __construct()
-    {
-        $this->tableName = 'data_karyawan';
-    }
+    private static $tableName = 'data_karyawan';
 
     public static function showKaryawan()
     {
-        $new = new Karyawan();
-        return StandardCrud::show(['table' => $new->tableName]);
+
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findKaryawan($data)
     {
-        $new = new Karyawan();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertKaryawan($data)
     {
-        $new = new Karyawan();
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateKaryawan($data)
     {
-        $new = new Karyawan();
+
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -44,9 +41,9 @@ class Karyawan
 
     public static function deleteKaryawan($data)
     {
-        $new = new Karyawan();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }

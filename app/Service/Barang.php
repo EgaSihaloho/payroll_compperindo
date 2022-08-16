@@ -7,36 +7,32 @@ use App\Service\StandardCrud;
 
 class Barang
 {
-    public function __construct()
-    {
-        $this->tableName = 'data_barang';
-    }
+    private static $tableName = 'data_barang';
 
     public static function showBarang()
     {
-        $new = new Barang();
-        return StandardCrud::show(['table' => $new->tableName]);
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findBarang($data)
     {
-        $new = new Barang();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertBarang($data)
     {
-        $new = new Barang();
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateBarang($data)
     {
-        $new = new Barang();
+
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -44,9 +40,9 @@ class Barang
 
     public static function deleteBarang($data)
     {
-        $new = new Barang();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }

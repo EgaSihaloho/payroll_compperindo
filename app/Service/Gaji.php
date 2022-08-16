@@ -7,36 +7,34 @@ use App\Service\StandardCrud;
 
 class Gaji
 {
-    public function __construct()
-    {
-        $this->tableName = 'input_gaji';
-    }
+
+    private static $tableName = 'input_gaji';
 
     public static function showGaji()
     {
-        $new = new Gaji();
-        return StandardCrud::show(['table' => $new->tableName]);
+
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findGaji($data)
     {
-        $new = new Gaji();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertGaji($data)
     {
-        $new = new Gaji();
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateGaji($data)
     {
-        $new = new Gaji();
+
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -44,9 +42,9 @@ class Gaji
 
     public static function deleteGaji($data)
     {
-        $new = new Gaji();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }

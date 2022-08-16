@@ -7,36 +7,34 @@ use App\Service\StandardCrud;
 
 class RelGaji
 {
-    public function __construct()
-    {
-        $this->tableName = 'rel_gaji';
-    }
+    private static $tableName = 'rel_gaji';
+
 
     public static function showRelGaji()
     {
-        $new = new RelGaji();
-        return StandardCrud::show(['table' => $new->tableName]);
+
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findRelGaji($data)
     {
-        $new = new RelGaji();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertRelGaji($data)
     {
-        $new = new RelGaji();
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateRelGaji($data)
     {
-        $new = new RelGaji();
+
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -44,9 +42,9 @@ class RelGaji
 
     public static function deleteRelGaji($data)
     {
-        $new = new RelGaji();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }
