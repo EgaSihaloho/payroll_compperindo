@@ -8,38 +8,35 @@ use Illuminate\Support\Facades\Hash;
 
 class UserAccess
 {
-    public function __construct()
-    {
-        $this->tableName = 'user_access';
-    }
+    private static $tableName;
 
     public static function showUserAccess()
     {
-        $new = new UserAccess();
-        return StandardCrud::show(['table' => $new->tableName]);
+
+        return StandardCrud::show(['table' => self::$tableName]);
     }
 
 
     public static function findUserAccess($data)
     {
-        $new = new UserAccess();
-        return StandardCrud::find(['table' => $new->tableName, 'where' => $data]);
+
+        return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
     public static function insertUserAccess($data)
     {
-        $new = new UserAccess();
+
         if (isset($data['passwords'])) $data['passwords'] = Hash::make($data['passwords']);
-        return StandardCrud::insert(['table' => $new->tableName, 'data' => $data]);
+        return StandardCrud::insert(['table' => self::$tableName, 'data' => $data]);
     }
 
 
     public static function updateUserAccess($data)
     {
-        $new = new UserAccess();
+
         if (isset($data['passwords'])) $data['passwords'] = Hash::make($data['passwords']);
         return StandardCrud::update([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data['where'],
             'data' => $data['data']
         ]);
@@ -47,9 +44,9 @@ class UserAccess
 
     public static function deleteUserAccess($data)
     {
-        $new = new UserAccess();
+
         return StandardCrud::delete([
-            'table' => $new->tableName,
+            'table' => self::$tableName,
             'where' => $data
         ]);
     }

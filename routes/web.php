@@ -22,3 +22,9 @@ Route::get('/homes', function () {
 Route::get('/layouts', function () {
     return view('content.dashboard');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/login', 'LoginController@login');

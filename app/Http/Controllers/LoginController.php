@@ -12,12 +12,13 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
+
         /*Set Request To Var Data*/
         $data = $request->all();
         /*Validate Request*/
         $validate = Validation::validate($data, 'login');
         /*Return If False*/
-        if ($validate->value == false) $validate->response;
+        if ($validate->value == false) return view('login');
         /*Insert Log*/
         Log::insertLog([
             "id_user_access" => $this->findUser($data["user_name"])->id,
@@ -26,7 +27,7 @@ class LoginController extends Controller
             "note" => "Someone Try To Login, data : " . json_encode($request->all())
         ]);
         /*Return To View*/
-        return $validate->response;
+        return view('content.dashboard');
     }
 
     private function findUser($username)
