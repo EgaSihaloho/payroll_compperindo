@@ -26,3 +26,5 @@ Route::get('/layouts', function () {
 Route::get('/login', 'LoginController@index');
 
 Route::post('/login', 'LoginController@login');
+
+Route::get('/dashboard', 'DashboardController@index');

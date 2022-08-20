@@ -16,7 +16,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-
         return view('login');
     }
     public function login(Request $request)
@@ -30,14 +29,17 @@ class LoginController extends Controller
         /*Return If False*/
         if ($validate->value == false) return Redirect::back()->with(["response" => json_decode($validate->response)]);
         /*Insert Log*/
+        $findUser = $this->findUser($data["user_name"]);
         Log::insertLog([
-            "id_user_access" => $this->findUser($data["user_name"])->id,
+            "id_user_access" => $findUser->id,
             "user_name" => $data["user_name"],
             "activity" => "login",
             "note" => "Someone Try To Login, data : " . json_encode($request->all())
         ]);
+        /*Put User Login To Session*/
+        session()->put('user', $findUser);
         /*Return To View*/
-        return view('content.dashboard');
+        return redirect('/dashboard')->with(["response" => json_decode($validate->response)]);
     }
 
     private function findUser($username)

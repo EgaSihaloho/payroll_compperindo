@@ -38,13 +38,13 @@ class Validation
     {
         if (Hash::check($this->data['passwords'], $this->user->passwords)) {
             $this->response =
-                BuildResponse::response('00', 'Success', 'Success Validate Data');
+                BuildResponse::response('00', 'Success', 'Success Login');
             $this->value = true;
             return $this;
         }
         $this->response =
             BuildResponse::response('99', 'Error', 'Password Not Match');
-        $this->value = true;
+        $this->value = false;
         return $this;
     }
 
