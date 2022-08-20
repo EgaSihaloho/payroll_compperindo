@@ -489,16 +489,5 @@
         </div>
       </section>
 
-      <script>
-        setTimeout(function () {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        timeOut: 20000,
-                    };
-					toastr.error('Error refresh tiket', 'Error');
-                }, 300
-                );
-      </script>
+     
 @endsection

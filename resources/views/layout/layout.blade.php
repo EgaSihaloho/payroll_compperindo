@@ -23,7 +23,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <!--Toastr-->
-     <link rel="stylesheet" href="{{URL::asset("toastr/toastr.min.css")}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src={{ URL::asset('/js/jquery-3.2.1.min.js') }}></script> 
   </head>
   <body>
     <!-- Side Navbar -->
@@ -42,7 +43,7 @@
     <script src='{{URL::asset("template/js/charts-home.js")}}'></script>
     <!-- Main File-->
     <script src='{{URL::asset("template/js/front.js")}}'></script>
-    <script src="{{URL::asset("toastr/toastr.min.js")}}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       // ------------------------------------------------------- //
       //   Inject SVG Sprite - 
@@ -79,7 +80,7 @@
                         showMethod: 'slideDown',
                         timeOut: 20000,
                     };
-					toastr.error('Error refresh tiket', 'Error');
+                    toastr.error('Error', 'error');
                 }, 300);
       </script>
   </body>

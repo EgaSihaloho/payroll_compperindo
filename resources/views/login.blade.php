@@ -22,6 +22,8 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src={{ URL::asset('/js/jquery-3.2.1.min.js') }}></script> 
   </head>
   <body>
     <div class="login-page d-flex align-items-center bg-gray-100">
@@ -63,6 +65,8 @@
        
       </div>
     </div>
+  
+   
     <!-- JavaScript files-->
     <script src='{{URL::asset("template/vendor/bootstrap/js/bootstrap.bundle.min.js")}}'></script>
     <script src='{{URL::asset("template/vendor/chart.js/Chart.min.js")}}'></script>
@@ -99,5 +103,19 @@
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.7.1/css/all.css' integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     @if(session('response'))
+    <script>
+        setTimeout(function () {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 20000,
+                    };
+                    toastr.error("{{session('response')->header}}", "{{session('response')->desc}}");
+                }, 300);
+    </script>
+    @endif
   </body>
 </html>
