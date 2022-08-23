@@ -154,6 +154,15 @@ class StringManipulator
         return $this;
     }
 
+    public static function getKey($data)
+    {
+        $result = [];
+        foreach ($data[0] as $key => $value) {
+            array_push($result, $key);
+        }
+        return $result;
+    }
+
     public static function search($data)
     {
 

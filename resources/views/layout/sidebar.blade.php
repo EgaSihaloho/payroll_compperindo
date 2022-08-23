@@ -9,7 +9,7 @@
           {{-- <p class="text-sm mb-0 text-muted">Web Developer</p> --}}
         </div>
         <!-- Small Brand information, appears on minimized sidebar--><a class="brand-small text-center" href="index.html">
-          <p class="h1 m-0">BD</p></a>
+          <p class="h1 m-0">CP</p></a>
       </div>
       <!-- Sidebar New -->
       @foreach (session('sideBar') as $side => $valueSide)
@@ -28,9 +28,7 @@
             @endforeach
           @else
             <ul class="list-unstyled">
-
-              
-              <li class="sidebar-item"><a class="sidebar-link" href="#{{$side}}"> 
+              <li class="sidebar-item"><a class="sidebar-link" href="#{{$side}}" data-bs-toggle="collapse"> 
                   <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
                     <use xlink:href="#browser-window-1"> </use>
                   </svg>
@@ -48,8 +46,12 @@
                   @endforeach
                 </ul>
               </li>
+              
             </ul>
           @endif
           
       @endforeach
+         
+      
+     
     </nav>
