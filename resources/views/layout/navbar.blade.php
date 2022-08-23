@@ -7,10 +7,10 @@
                   <svg class="svg-icon svg-icon-sm svg-icon-heavy text-white">
                     <use xlink:href="#menu-1"> </use>
                   </svg></a><a class="navbar-brand ms-2" href="index.html">
-                  <div class="brand-text d-none d-md-inline-block text-uppercase letter-spacing-0"><span class="text-white fw-normal text-xs">Bootstrap </span><strong class="text-primary text-sm">Dashboard</strong></div></a></div>
+                  <div class="brand-text d-none d-md-inline-block text-uppercase letter-spacing-0"><span class="text-white fw-normal text-xs"></span><strong class="text-primary text-sm">Compperindo</strong></div></a></div>
               <ul class="nav-menu mb-0 list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a class="nav-link text-white position-relative" id="notifications" rel="nofollow" data-bs-target="#" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{-- <li class="nav-item dropdown"> <a class="nav-link text-white position-relative" id="notifications" rel="nofollow" data-bs-target="#" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">
                       <use xlink:href="#chart-1"> </use>
                     </svg><span class="badge bg-warning">12</span></a>
@@ -74,12 +74,57 @@
                         </div></a></li>
                     <li><a class="dropdown-item text-center" href="#!"> <strong class="text-xs text-gray-600">Read all messages       </strong></a></li>
                   </ul>
-                </li>
-                <!-- Languages dropdown    -->
+                </li> --}}
+                {{-- <!-- Languages dropdown    -->
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-white text-sm" id="languages" rel="nofollow" data-bs-target="#" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src='{{URL::asset("template/img/favicon.ico")}}'flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block ms-2">English</span></a>
                   <ul class="dropdown-menu dropdown-menu-end mt-sm-3 shadow-sm" aria-labelledby="languages">
                     <li><a class="dropdown-item" rel="nofollow" href="#!"> <img class="me-2" src='{{URL::asset("template/img/favicon.ico")}}'flags/16/DE.png" alt="English"><span>German</span></a></li>
                     <li><a class="dropdown-item" rel="nofollow" href="#!"> <img class="me-2" src='{{URL::asset("template/img/favicon.ico")}}'flags/16/FR.png" alt="English"><span>French                                                         </span></a></li>
+                  </ul>
+                </li> --}}
+                <!-- Account Setting -->
+                <li class="nav-item dropdown"> <a class="nav-link text-white position-relative" id="notifications" rel="nofollow" data-bs-target="#" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                      <use xlink:href="#chart-1"> </use>
+                    </svg><span class="badge bg-warning">12</span></a>
+                  <ul class="dropdown-menu dropdown-menu-end mt-sm-3 shadow-sm" aria-labelledby="notifications">
+                    <li><a class="dropdown-item py-3" href="#!"> 
+                        <div class="d-flex">
+                          <div class="icon icon-sm bg-blue">
+                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                              <use xlink:href="#envelope-1"> </use>
+                            </svg>
+                          </div>
+                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">You have 6 new messages </span><small class="small text-gray-600">4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a class="dropdown-item py-3" href="#!"> 
+                        <div class="d-flex">
+                          <div class="icon icon-sm bg-green">
+                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                              <use xlink:href="#chats-1"> </use>
+                            </svg>
+                          </div>
+                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">New 2 WhatsApp messages</span><small class="small text-gray-600">4 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a class="dropdown-item py-3" href="#!"> 
+                        <div class="d-flex">
+                          <div class="icon icon-sm bg-orange">
+                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                              <use xlink:href="#checked-window-1"> </use>
+                            </svg>
+                          </div>
+                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">Server Rebooted</span><small class="small text-gray-600">8 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a class="dropdown-item py-3" href="#!"> 
+                        <div class="d-flex">
+                          <div class="icon icon-sm bg-green">
+                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                              <use xlink:href="#chats-1"> </use>
+                            </svg>
+                          </div>
+                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">New 2 WhatsApp messages</span><small class="small text-gray-600">10 minutes ago</small></div>
+                        </div></a></li>
+                    <li><a class="dropdown-item all-notifications text-center" href="#!"> <strong class="text-xs text-gray-600">view all notifications                                            </strong></a></li>
                   </ul>
                 </li>
                 <!-- Log out-->

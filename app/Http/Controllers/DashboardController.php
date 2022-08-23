@@ -10,19 +10,23 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        /* ------------------------- Validate User Has Login ------------------------ */
         if (!session()->has('user')) return redirect('login')->with([
             "response" => json_decode(BuildResponse::response('99', 'Invalid Login', 'Please Login First'))
         ]);
-        $dataSideBar = $this->findSideBar();
 
-        return view('content.dashboard')->with(["sideBar" => $dataSideBar]);
+        /* ------------------------- push sideBar to Session ------------------------ */
+        session()->put('sideBar', $this->findSideBar());
+
+        /* ----------------------------- Return to View ----------------------------- */
+        return view('content.dashboard');
     }
 
     private function findSideBar()
     {
         $result = DB::table('manage_view as submenu')
             ->join('group_view as group', 'submenu.group_view', 'group.id')
-            ->select('submenu.menu_name', 'group.group_name')
+            ->select('submenu.menu_name', 'group.group_name', 'submenu.icon', 'url')
             ->get()->groupBy('group_name');
         return $result;
     }

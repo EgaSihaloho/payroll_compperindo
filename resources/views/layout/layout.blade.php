@@ -18,13 +18,15 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href='{{URL::asset("template/css/custom.css")}}'>
     <!-- Favicon-->
-    <link rel="shortcut icon" href='{{URL::asset("template/img/favicon.ico")}}'>
+    {{-- <link rel="shortcut icon" href='{{URL::asset("template/img/favicon.ico")}}'> --}}
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <!--Toastr-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src={{ URL::asset('/js/jquery-3.2.1.min.js') }}></script> 
+    <link rel="stylesheet" href="{{ URL::asset('/fontawesome-free/css/all.min.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/css/jquery.dataTables.min.css') }}"> --}}
   </head>
   <body>
     <!-- Side Navbar -->

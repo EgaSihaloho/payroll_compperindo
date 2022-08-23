@@ -11,6 +11,25 @@
 |
 */
 
+/* ------------------------------ Routes Login ------------------------------ */
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+/* ---------------------------- End Routes Login ---------------------------- */
+
+/* ---------------------------- Routes Dashboard ---------------------------- */
+Route::get('/dashboard', 'DashboardController@index');
+/* -------------------------- End Routes Dashboard -------------------------- */
+
+/* ------------------------------ Routes Barang ----------------------------- */
+Route::get('/barang', 'BarangController@index');
+/* ---------------------------- End Routes Barang --------------------------- */
+
+
+
+
+
+
+/* --------------------------------- Testing -------------------------------- */
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,9 +41,7 @@ Route::get('/homes', function () {
 Route::get('/layouts', function () {
     return view('content.dashboard');
 });
-
-Route::get('/login', 'LoginController@index');
-
-Route::post('/login', 'LoginController@login');
-
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/test', function () {
+    return view('layout.test');
+});
+/* ------------------------------- End Testing ------------------------------ */
