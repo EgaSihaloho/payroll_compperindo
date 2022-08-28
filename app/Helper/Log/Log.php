@@ -23,7 +23,7 @@ class Log
     {
         $this->insertLog = DB::table('activity_log')->insertGetId($this->data);
 
-        $this->response = BuildResponse::response('00', 'Success', 'Success Insert Log');
+        $this->response = BuildResponse::response('00', 'Success', 'Success Insert Log', '');
         $this->value = true;
         return $this;
     }

@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         /* ------------------------- Validate User Has Login ------------------------ */
         if (!session()->has('user')) return redirect('login')->with([
-            "response" => json_decode(BuildResponse::response('99', 'Invalid Login', 'Please Login First'))
+            "response" => json_decode(BuildResponse::response('99', 'Invalid Login', 'Please Login First', ''))
         ]);
 
         /* ------------------------- push sideBar to Session ------------------------ */

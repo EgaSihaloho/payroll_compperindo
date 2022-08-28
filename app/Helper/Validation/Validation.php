@@ -38,12 +38,12 @@ class Validation
     {
         if (Hash::check($this->data['passwords'], $this->user->passwords)) {
             $this->response =
-                BuildResponse::response('00', 'Success', 'Success Login');
+                BuildResponse::response('00', 'Success', 'Success Login', '');
             $this->value = true;
             return $this;
         }
         $this->response =
-            BuildResponse::response('99', 'Error', 'Password Not Match');
+            BuildResponse::response('99', 'Error', 'Password Not Match', '');
         $this->value = false;
         return $this;
     }
@@ -67,12 +67,12 @@ class Validation
     private function validateEmail()
     {
         if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->response = BuildResponse::response('99', 'Invalid Email', 'Wrong Email Format');
+            $this->response = BuildResponse::response('99', 'Invalid Email', 'Wrong Email Format', '');
             $this->value = false;
             return $this;
         }
         $this->response =
-            BuildResponse::response('00', 'Success', 'Success Validate Data');
+            BuildResponse::response('00', 'Success', 'Success Validate Data', '');
         $this->value = true;
         return $this;
     }
@@ -86,22 +86,22 @@ class Validation
 
         if ($this->method == 'register') {
             if (!$this->user == null) {
-                $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist');
+                $this->response = BuildResponse::response('99', 'Duplicate User', 'User Name & Email Already Exist', '');
                 $this->value = false;
                 return $this;
             }
             $this->response =
-                BuildResponse::response('00', 'Success', 'Success Validate Data');
+                BuildResponse::response('00', 'Success', 'Success Validate Data', '');
             $this->value = true;
             return $this;
         } else {
             if (!$this->user == null) {
                 $this->response =
-                    BuildResponse::response('00', 'Success', 'Success Validate Data');
+                    BuildResponse::response('00', 'Success', 'Success Validate Data', '');
                 $this->value = true;
                 return $this;
             }
-            $this->response = BuildResponse::response('99', 'User Not Found', 'Cannot find user');
+            $this->response = BuildResponse::response('99', 'User Not Found', 'Cannot find user', '');
             $this->value = false;
             return $this;
         }
@@ -110,7 +110,7 @@ class Validation
     private function validateData()
     {
         if (sizeof($this->column) == 0) {
-            $this->response = BuildResponse::response('99', 'Undifined Data', 'No Data Send');
+            $this->response = BuildResponse::response('99', 'Undifined Data', 'No Data Send', '');
             $this->value = false;
             return $this;
         }
@@ -127,12 +127,12 @@ class Validation
 
         if (sizeof($this->column) > 0) {
             $this->response = BuildResponse::response('99', 'Undifined Data', 'index ' .
-                StringManipulator::addCommas($this->column) . ' not found');
+                StringManipulator::addCommas($this->column) . ' not found', '');
             $this->value = false;
             return $this;
         }
         $this->response =
-            BuildResponse::response('00', 'Success', 'Success Validate Data');
+            BuildResponse::response('00', 'Success', 'Success Validate Data', '');
         $this->value = true;
         return $this;
     }

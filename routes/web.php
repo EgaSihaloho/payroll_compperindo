@@ -14,6 +14,7 @@
 /* ------------------------------ Routes Login ------------------------------ */
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
 /* ---------------------------- End Routes Login ---------------------------- */
 
 /* ---------------------------- Routes Dashboard ---------------------------- */
@@ -22,6 +23,9 @@ Route::get('/dashboard', 'DashboardController@index');
 
 /* ------------------------------ Routes Barang ----------------------------- */
 Route::get('/barang', 'BarangController@index');
+Route::get('/setting_barang', 'BarangController@index');
+Route::get('/getDataTable', 'BarangController@getDataTable');
+Route::get('/findBarang/{search}', 'BarangController@findBarang');
 /* ---------------------------- End Routes Barang --------------------------- */
 
 

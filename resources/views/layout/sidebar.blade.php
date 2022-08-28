@@ -33,7 +33,7 @@
                     <use xlink:href="#browser-window-1"> </use>
                   </svg>
                   {{$side}} </a>
-                <ul class="collapse list-unstyled " id="{{$side}}">
+                <ul class="collapse list-unstyled " id="{{$side}}" >
                   @foreach ($valueSide as $subMenu)
                       <li>
                         <a class="sidebar-link" href="{{$subMenu->url}}">
@@ -51,7 +51,19 @@
           @endif
           
       @endforeach
-         
+      
+      @if(isset($activeSideBar))
+      <script>
+        const activeGroupMenu =document.querySelectorAll('[href="#{{$activeSideBar}}"]')[0];
+        activeGroupMenu.classList.add("show");
+        activeGroupMenu.setAttribute('aria-expanded', 'true');
+        
+        const activeSubMenu = document.querySelector("#{{$activeSideBar}}");
+        activeSubMenu.classList.add("colapse");
+        activeSubMenu.classList.add("show");
+        
+      </script>
+      @endif
       
      
     </nav>

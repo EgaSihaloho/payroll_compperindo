@@ -83,52 +83,9 @@
                   </ul>
                 </li> --}}
                 <!-- Account Setting -->
-                <li class="nav-item dropdown"> <a class="nav-link text-white position-relative" id="notifications" rel="nofollow" data-bs-target="#" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="svg-icon svg-icon-xs svg-icon-heavy">
-                      <use xlink:href="#chart-1"> </use>
-                    </svg><span class="badge bg-warning">12</span></a>
-                  <ul class="dropdown-menu dropdown-menu-end mt-sm-3 shadow-sm" aria-labelledby="notifications">
-                    <li><a class="dropdown-item py-3" href="#!"> 
-                        <div class="d-flex">
-                          <div class="icon icon-sm bg-blue">
-                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
-                              <use xlink:href="#envelope-1"> </use>
-                            </svg>
-                          </div>
-                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">You have 6 new messages </span><small class="small text-gray-600">4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a class="dropdown-item py-3" href="#!"> 
-                        <div class="d-flex">
-                          <div class="icon icon-sm bg-green">
-                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
-                              <use xlink:href="#chats-1"> </use>
-                            </svg>
-                          </div>
-                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">New 2 WhatsApp messages</span><small class="small text-gray-600">4 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a class="dropdown-item py-3" href="#!"> 
-                        <div class="d-flex">
-                          <div class="icon icon-sm bg-orange">
-                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
-                              <use xlink:href="#checked-window-1"> </use>
-                            </svg>
-                          </div>
-                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">Server Rebooted</span><small class="small text-gray-600">8 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a class="dropdown-item py-3" href="#!"> 
-                        <div class="d-flex">
-                          <div class="icon icon-sm bg-green">
-                            <svg class="svg-icon svg-icon-xs svg-icon-heavy">
-                              <use xlink:href="#chats-1"> </use>
-                            </svg>
-                          </div>
-                          <div class="ms-3"><span class="h6 d-block fw-normal mb-1 text-xs text-gray-600">New 2 WhatsApp messages</span><small class="small text-gray-600">10 minutes ago</small></div>
-                        </div></a></li>
-                    <li><a class="dropdown-item all-notifications text-center" href="#!"> <strong class="text-xs text-gray-600">view all notifications                                            </strong></a></li>
-                  </ul>
-                </li>
+               
                 <!-- Log out-->
-                <li class="nav-item"><a class="nav-link text-white text-sm ps-0" href="login.html"> <span class="d-none d-sm-inline-block">Logout</span>
+                <li class="nav-item"><a class="nav-link text-white text-sm ps-0" href="/logout"> <span class="d-none d-sm-inline-block">Logout</span>
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">
                       <use xlink:href="#security-1"> </use>
                     </svg></a></li>

@@ -46,4 +46,16 @@ class LoginController extends Controller
     {
         return DB::table('user_access')->where('user_name', $username)->first();
     }
+
+    public function logout()
+    {
+        Log::insertLog([
+            "id_user_access" => session('user')->id,
+            "user_name" => session('user')->user_name,
+            "activity" => "logout",
+            "note" => session('user')->first_name . " " . session('user')->last_name . " Has Logout"
+        ]);
+        session()->flush();
+        return redirect('/login');
+    }
 }
