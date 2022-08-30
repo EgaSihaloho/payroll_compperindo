@@ -28,15 +28,20 @@
     
 
     <script>
-        const dataTable = JSON.parse('{!!json_encode($dataTable)!!}');
-        dataTable.path = replaceUrl(dataTable.path, 'getDataTable')
+       
         const keyTable = JSON.parse('{!!json_encode($keyTable)!!}');
         const entriesDiv = document.querySelector('#detail-entries');
         const paginationDiv = document.querySelector('#pagination');
         const tbody = document.querySelector('tbody');
         const thead = document.querySelector('thead');
         const tableDiv = document.querySelector('.table-responsive');
-        constructTable(dataTable, keyTable);
+        constructTable(setDataTable(), keyTable);
+
+        function setDataTable(){
+            const dataTable = JSON.parse('{!!json_encode($dataTable)!!}');
+            dataTable.path = replaceUrl(dataTable.path, 'getDataTable')
+            return dataTable;
+        }
 
         function constructTable(data, key){
             constructThead(key);
@@ -53,28 +58,32 @@
                         const resultData = await findData(e.target.dataset.urlPage, 'get', '');
                         loadingTable('hide');   
                         constructTable(resultData.data.dataTable, resultData.data.keyTable);
-                        const status = (resultData.code =='99') ? false : true;
+                        let status = (resultData.code =='99') ? false : true;
                         showResponse(resultData.header, resultData.desc, status);
                     }
                 } catch (error) {
                     showResponse("Error", error, false) ;
-                    console.log(error);
                 }
             } else if(e.target.classList.contains('btnSubmit')){
                 e.preventDefault();
                 try {
                     loadingTable('show');
-                    const key = (searchInput.value == '') ? ' ': searchInput.value;
+                    const key = (searchInput.value == '') ? '**': searchInput.value;
                     const resultData = await findData('http://localhost:8000/findBarang/'+key, 'get', '');
                     loadingTable('hide');   
                     constructTable(resultData.data.dataTable, resultData.data.keyTable);
-                    const status = (resultData.code =='99') ? false : true;
+                    let status = (resultData.code =='99') ? false : true;
                     showResponse(resultData.header, resultData.desc, status);
                 
                 } catch (error) {
                     showResponse("Error", error, false) ;
-                    console.log(error);
+                    
                 }
+            } else if(e.target.hasAttribute("data-id-edit")){
+                // constructModal('edit');
+                // constructEditForm(dataTable[e.target.dataset.idEdit]);
+                btnModal.click();
+
             }
         });
 
@@ -269,6 +278,7 @@
                 tr.appendChild(th);
             })
             th = document.createElement('th');
+            th.setAttribute('colspan', '2');
             
             const i = document.createElement('i');
             i.classList.add('fa-solid', 'fa-gear'); 
@@ -278,34 +288,41 @@
         }
 
         function constructCrudButton(key, id, appendTo){
-            const editClass  = ['btn', 'btn-warning', 'fa-solid', 'fa-pen-to-square'];
-            console.log(editClass);
+            const btnModal = [    
+                {
+                    for : "edit",
+                    classes : ['btn', 'btn-warning', 'fa-solid', 'fa-pen-to-square'],
+                    modalHeader : 'Edit Barang',
+                    // dataSet : {
+                    //     bsToggle : "modal",
+                    //     bsTarget : "#exampleModal"
+                    // }
+                },
+                {
+                    for : 'delete',
+                    classes : ['btn', 'btn-danger', 'fa-solid', 'fa-trash-can'],
+                    modalHeader : 'Delete Barang',
+                    // dataSet : {
+                    //     bsToggle : "modal",
+                    //     bsTarget : "#exampleModal"
+                    // }
 
-            const deleteClass = ['btn', 'btn-danger', 'fa-solid', 'fa-trash-can'];
-
-            
-
-            td = document.createElement('td');
-            i = document.createElement('i');
-            editClass.forEach(data => {
-                i.classList.add(data);
+                }
+            ];
+            btnModal.forEach(data => {
+                td = document.createElement('td');
+                i = document.createElement('i');
+                data.classes.forEach(data => {
+                    i.classList.add(data);
+                });
+                // i.dataset.bsToggle = data.dataSet.bsToggle;
+                // i.dataset.bsTarget = data.dataSet.bsTarget;
+                (data.for == 'edit') ? i.dataset.idEdit = key-1 : i.dataset.idDelete = key-1;
+                
+                i.dataset.origin = id;
+                td.appendChild(i);
+                appendTo.appendChild(td);
             });
-            i.dataset.idEdit = key;
-            i.dataset.origin = id;
-            td.appendChild(i);
-            appendTo.appendChild(td);
-
-            
-            i = document.createElement('i');
-            i.classList.add('btn');
-            deleteClass.forEach(data => {
-                i.classList.add(data);
-            });
-            i.dataset.idDelete = key;
-            i.dataset.origin = id;
-            td.appendChild(i);
-            appendTo.appendChild(td);
-            
         }
 
 
