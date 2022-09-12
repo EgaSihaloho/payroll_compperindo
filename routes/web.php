@@ -24,13 +24,26 @@ Route::get('/dashboard', 'DashboardController@index');
 /* ------------------------------ Routes Barang ----------------------------- */
 Route::get('/barang', 'BarangController@index');
 Route::get('/setting_barang', 'BarangController@index');
-Route::get('/getDataTable', 'BarangController@getDataTable');
+Route::get('/getDataTableBarang', 'BarangController@getDataTableBarang');
 Route::get('/findBarang/{search}', 'BarangController@findBarang');
+Route::post('/editBarang', 'barangController@editBarang');
+Route::post('/addBarang', 'barangController@addBarang');
+Route::post('/deleteBarang', 'barangController@deleteBarang');
 /* ---------------------------- End Routes Barang --------------------------- */
 
-
-
-
+/* ------------------------------ Routes Karyawan ----------------------------- */
+Route::get('/karyawan', 'KaryawanController@index');
+Route::get('/setting_karyawan', 'KaryawanController@index');
+Route::get('/getDataTableKaryawan', 'KaryawanController@getDataTableKaryawan');
+Route::get('/findKaryawan/{search}', 'KaryawanController@findKaryawan');
+Route::post('/editKaryawan', 'KaryawanController@editKaryawan');
+Route::post('/addKaryawan', 'KaryawanController@addKaryawan');
+Route::post('/deleteKaryawan', 'KaryawanController@deleteKaryawan');
+Route::get('/getRelGaji/{id}', 'KaryawanController@getDetailRelGaji');
+// Route::get('/templateGaji', function () {
+//     return 'hello';
+// });
+/* ---------------------------- End Routes Karyawan --------------------------- */
 
 
 /* --------------------------------- Testing -------------------------------- */

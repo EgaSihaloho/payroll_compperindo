@@ -39,7 +39,7 @@ class LoginController extends Controller
         /*Put User Login To Session*/
         session()->put('user', $findUser);
         /*Return To View*/
-        return redirect('/dashboard')->with(["response" => json_decode($validate->response)]);
+        return redirect('/barang')->with(["response" => json_decode($validate->response)]);
     }
 
     private function findUser($username)

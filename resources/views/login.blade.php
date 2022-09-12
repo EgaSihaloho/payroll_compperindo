@@ -34,7 +34,6 @@
               <div class="card-body p-5">
                 <header class="text-center mb-5">
                   <h1 class="text-xxl text-gray-400 text-uppercase"><strong class="text-primary">Compperindo</strong></h1>
-                  
                 </header>
                 <form class="login-form" method="POST" action="/login">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />

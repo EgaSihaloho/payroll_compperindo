@@ -6,26 +6,26 @@ use Illuminate\Support\Facades\DB;
 use App\Service\StandardCrud;
 use Carbon\Carbon;
 
-class Barang
+class MLembur
 {
-    private static $tableName = 'data_barang';
+    private static $tableName = 'm_lembur';
 
-    public static function showBarang()
+    public static function showMLembur()
     {
         return StandardCrud::show(['table' => self::$tableName]);
     }
 
-    public static function showBarangForUser()
+    public static function showMLemburForUser()
     {
-        return DB::table('data_barang as barang')
-            ->select('barang.id', 'barang.nama_barang', 'satuan.satuan_name', 'barang.harga', 'barang.created_at')
-            ->join('m_satuan as satuan', 'satuan.id', 'barang.id_satuan')
-            ->orderBy('barang.updated_at', 'desc')
+        return DB::table('data_MLembur as MLembur')
+            ->select('MLembur.id', 'MLembur.nama_MLembur', 'satuan.satuan_name', 'MLembur.harga', 'MLembur.created_at')
+            ->join('m_satuan as satuan', 'satuan.id', 'MLembur.id_satuan')
+            ->orderBy('MLembur.updated_at', 'desc')
             ->paginate(5);
     }
 
 
-    public static function editBarang($data)
+    public static function editMLembur($data)
     {
         $where = $data['id'];
         unset($data['token']);
@@ -33,11 +33,11 @@ class Barang
         return DB::table(self::$tableName)->where('id', $where)->update($data);
     }
 
-    public static function keyBarang()
+    public static function keyMLembur()
     {
         return [
             '#' => 'id',
-            'Item Name' => 'nama_barang',
+            'Item Name' => 'nama_MLembur',
             'Unit' => 'satuan_name',
             'Price Item' => 'harga',
             'Created At' => 'created_at',
@@ -45,26 +45,26 @@ class Barang
         ];
     }
 
-    public static function findBarangForUser($where)
+    public static function findMLemburForUser($where)
     {
-        return DB::table('data_barang as barang')
-            ->select('barang.id', 'barang.nama_barang', 'satuan.satuan_name', 'barang.harga', 'barang.created_at')
-            ->join('m_satuan as satuan', 'satuan.id', 'barang.id_satuan')
-            ->where('barang.id', 'like', '%' . $where . '%')
-            ->orWhere('barang.nama_barang', 'like', '%' . $where . '%')
+        return DB::table('data_MLembur as MLembur')
+            ->select('MLembur.id', 'MLembur.nama_MLembur', 'satuan.satuan_name', 'MLembur.harga', 'MLembur.created_at')
+            ->join('m_satuan as satuan', 'satuan.id', 'MLembur.id_satuan')
+            ->where('MLembur.id', 'like', '%' . $where . '%')
+            ->orWhere('MLembur.nama_MLembur', 'like', '%' . $where . '%')
             ->orWhere('satuan.satuan_name', 'like', '%' . $where . '%')
-            ->orWhere('barang.harga', 'like', '%' . $where . '%')
-            ->orderBy('barang.updated_at', 'desc')
+            ->orWhere('MLembur.harga', 'like', '%' . $where . '%')
+            ->orderBy('MLembur.updated_at', 'desc')
             ->paginate(5);
     }
 
-    public static function findBarang($data)
+    public static function findMLembur($data)
     {
 
         return StandardCrud::find(['table' => self::$tableName, 'where' => $data]);
     }
 
-    public static function insertBarang($data)
+    public static function insertMLembur($data)
     {
         if (isset($data['token'])) unset($data['token']);
         if (!isset($data['created_at'])) $data['created_at'] = Carbon::now();
@@ -75,7 +75,7 @@ class Barang
     }
 
 
-    public static function updateBarang($data)
+    public static function updateMLembur($data)
     {
 
         return StandardCrud::update([
@@ -85,7 +85,7 @@ class Barang
         ]);
     }
 
-    public static function deleteBarang($data)
+    public static function deleteMLembur($data)
     {
         if (isset($data['token'])) unset($data['token']);
         return StandardCrud::delete([

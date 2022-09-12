@@ -33,6 +33,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   </head>
   <body>
+    <input type="text" style="display:none" value="{{csrf_token()}}" id="tokenComperindo">
+    <script>const user = JSON.parse('{!! json_encode(session("user")) !!}');</script>
+    <script src='{{URL::asset("js/eventListener.js")}}'></script>
+    <script src='{{URL::asset("js/buildObject.js")}}'></script>
+    <script src="{{URL::asset('js/ajaxData.js')}}"></script>
+    <script src='{{URL::asset("js/responseToastr.js")}}'></script>
+    <script src="{{URL::asset('js/customize.js')}}"></script>
+    <script src="{{URL::asset('js/loading.js')}}"></script>
     <!-- Side Navbar -->
     @include('layout.sidebar')
     <div class="page">
@@ -42,6 +50,10 @@
     </div>
     <!-- JavaScript files-->
      @include('layout.response')
+    
+   
+   
+    </script>
     <script src='{{URL::asset("template/vendor/bootstrap/js/bootstrap.bundle.min.js")}}'></script>
     {{-- <script src='{{URL::asset("template/vendor/chart.js/Chart.min.js")}}'></script> --}}
     <script src='{{URL::asset("template/vendor/just-validate/js/just-validate.min.js")}}'></script>
